@@ -192,26 +192,3 @@ function initLive2d (){
     })
 }
 initLive2d ();
-//天气api
-var weather=Array();
-weather.state=false;
-$(document).ready(function(){
-    $.ajax({
-        dataType:"jsonp",
-        success:function(data){
-            if(data.success!=1){return;}
-            weather.state=true;
-            weather.c=Array();
-            weather.c[0]="今天是"+data.result[0].days+"，"+data.result[0].week;
-            weather.c[1]=data.result[0].citynm+"今天气温是"+data.result[0].temp_high+"°C到"+data.result[0].temp_low+"°C";
-            weather.c[2]=data.result[0].citynm+"今天天气是"+data.result[0].weather+"  "+data.result[0].temp_high+"°C~"+data.result[0].temp_low+"°C";
-            weather.c[3]=data.result[0].citynm+"今天风力是"+data.result[0].winp+"，"+data.result[0].wind;
-            weather.c[4]=data.result[1].citynm+"明天气温是"+data.result[1].temp_high+"°C到"+data.result[1].temp_low+"°C";
-            weather.c[5]=data.result[1].citynm+"明天天气是"+data.result[1].weather+"  "+data.result[1].temp_high+"°C~"+data.result[1].temp_low+"°C";
-            weather.c[6]=data.result[2].citynm+"后天气温是"+data.result[2].temp_high+"°C到"+data.result[2].temp_low+"°C";
-            weather.c[7]=data.result[2].citynm+"后天天气是"+data.result[2].weather+"  "+data.result[2].temp_high+"°C~"+data.result[2].temp_low+"°C";
-        },
-        type:"GET",
-        url:"http://api.myhloli.com/weather/?callback=?"
-    });
-});

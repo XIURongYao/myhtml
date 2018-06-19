@@ -20,6 +20,9 @@
 <script type="text/javascript" src="live2d/js/message.js"></script>
 <script type="text/javascript">
     loadlive2d("live2d", "live2d/model/tia/model.json");
+    (function(){if(!localStorage.getItem('access')){localStorage.setItem('access', new Date().getTime());}var _access = new Date(parseInt(localStorage.getItem('access')));var access = _access.getFullYear() + '年' + (_access.getMonth()+1) + '月' + _access.getDate() + '日';var re = /x/;var i = 0;if(!localStorage.getItem('hit')){localStorage.setItem('hit', 0);}else{i = parseInt(localStorage.getItem('hit'));}console.log(re);re.toString = function (){localStorage.setItem('hit', ++i);return '这是你自 ' + access + ' 以来第 ' + i + ' 次在本站打开控制台';};})();
+    (function(){window.end = performance.now();if (window.end > window.start){console.clear();console.log("\n %c 智超网络 %c https://imjad.cn \n\n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");console.log('%c页面加载完毕消耗了'+Math.round((window.end - window.start)*100)/100+'ms','background: #fff;color: #333;text-shadow: 0 0 2px #eee, 0 0 3px #eee, 0 0 3px #eee, 0 0 2px #eee, 0 0 3px #eee;');}})();
+    window.onload = function() {var now = new Date().getTime();var page_load_time = now - performance.timing.navigationStart;console.log("\n %c 智超网络 %c http://xiaochaoba.cn \n\n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");console.log('%c页面加载完毕消耗了'+Math.round(performance.now()*100)/100+'ms','background: #fff;color: #333;text-shadow: 0 0 2px #eee, 0 0 3px #eee, 0 0 3px #eee, 0 0 2px #eee, 0 0 3px #eee;');};
 </script>
 </body>
 </html>
