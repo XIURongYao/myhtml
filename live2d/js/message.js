@@ -166,6 +166,20 @@ function showHitokoto(){
     });
 }
 
+function talk(){
+    $.ajax({type: "GET",
+        url: "http://jisuznwd.market.alicloudapi.com/iqa/query",
+        data:{question:$("#msg").val()},
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "APPCODE 320c925f27df46059d0f1b28da0212a0");
+        },
+        success: function(result) {
+            showMessage(result.result.content, 5000);
+        }
+    });
+}
+
+
 function showMessage(text, timeout){
     if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
     //console.log('showMessage', text);
