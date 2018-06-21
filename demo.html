@@ -15,21 +15,15 @@
     </style>
 </head>
 <body>
-<div>
-    <textarea id="msg"></textarea>
-    <button onclick="talk()">提问</button>
-    <button onclick="$('#msg').val('')">清空</button>
-</div>
 <div id="landlord">
     <div class="message"></div>
-    <canvas id="live2d" class="live2d" height="300px" width="370px"></canvas>
-    <!--<div class="hide-button" style="display: none">隐藏</div>-->
+    <canvas id="live2d" class="live2d" height="500px" width="500px"></canvas>
+    <div class="hide-button" >关灯</div>
+</div>
+<div style="text-align: center;">
+    <textarea id="msg" class="take"></textarea>
 </div>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript">
-    var message_Path = 'live2d/'
-    var home_Path = 'https://haremu.com/'
-</script>
 <script type="text/javascript" src="live2d/js/live2d.js"></script>
 <script type="text/javascript" src="live2d/js/message.js"></script>
 <!-- 开发环境版本，包含了用帮助的命令行警告
@@ -41,43 +35,6 @@
 
 <script type="text/javascript">
     loadlive2d("live2d", "live2d/model/tia/model.json");
-    var timing = performance.timing;
-    var readyStart = timing.fetchStart - timing.navigationStart;
-    var redirectTime = timing.redirectEnd  - timing.redirectStart;
-    var appcacheTime = timing.domainLookupStart  - timing.fetchStart;
-    var unloadEventTime = timing.unloadEventEnd - timing.unloadEventStart;
-    var lookupDomainTime = timing.domainLookupEnd - timing.domainLookupStart;
-    var connectTime = timing.connectEnd - timing.connectStart;
-    var requestTime = timing.responseEnd - timing.requestStart;
-    var initDomTreeTime = timing.domInteractive - timing.responseEnd;
-    var domReadyTime = timing.domComplete - timing.domInteractive; //过早获取时,domComplete有时会是0
-    var loadEventTime = timing.loadEventEnd - timing.loadEventStart;
-    var loadTime = timing.loadEventEnd - timing.navigationStart;//过早获取时,loadEventEnd有时会是0
-
-
-    console.log('准备新页面时间耗时: ' + readyStart);
-    console.log('redirect 重定向耗时: ' + redirectTime);
-    console.log('Appcache 耗时: ' + appcacheTime);
-    console.log('unload 前文档耗时: ' + unloadEventTime);
-    console.log('DNS 查询耗时: ' + lookupDomainTime);
-    console.log('TCP连接耗时: ' + connectTime);
-    console.log('request请求耗时: ' + requestTime);
-    console.log('请求完毕至DOM加载: ' + initDomTreeTime);
-    console.log('解释dom树耗时: ' + domReadyTime);
-    console.log('load事件耗时: ' + loadEventTime);
-    console.log('从开始至load总耗时: ' + loadTime);
-    function switchNightMode(){
-        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
-        if(night == '0'){
-            document.body.classList.add('night');
-            document.cookie = "night=1;path=/"
-            console.log('夜间模式开启');
-        }else{
-            document.body.classList.remove('night');
-            document.cookie = "night=0;path=/"
-            console.log('夜间模式关闭');
-        }
-    }
     (function(){if(!localStorage.getItem('access')){localStorage.setItem('access', new Date().getTime());}var _access = new Date(parseInt(localStorage.getItem('access')));var access = _access.getFullYear() + '年' + (_access.getMonth()+1) + '月' + _access.getDate() + '日';var re = /x/;var i = 0;if(!localStorage.getItem('hit')){localStorage.setItem('hit', 0);}else{i = parseInt(localStorage.getItem('hit'));}console.log(re);re.toString = function (){localStorage.setItem('hit', ++i);return '这是你自 ' + access + ' 以来第 ' + i + ' 次在本站打开控制台';};})();
     (function(){
         window.end = performance.now();

@@ -91,7 +91,7 @@ $(document).on('copy', function (){
 function initTips(){
     $.ajax({
         cache: true,
-        url: `${message_Path}message.json`,
+        url: `live2d/message.json`,
         dataType: "json",
         success: function (result){
             $.each(result.mouseover, function (index, tips){
@@ -130,7 +130,7 @@ initTips();
             text = '嗨！ 来自 谷歌搜索 的朋友！<br>欢迎访问<span style="color:#0099cc;">「 ' + document.title.split(' - ')[0] + ' 」</span>';
         }
     }else {
-        if (window.location.href == `${home_Path}`) { //主页URL判断，需要斜杠结尾
+        if (window.location.href == `http://www.xiaochaoba.cn/`) { //主页URL判断，需要斜杠结尾
             var now = (new Date()).getHours();
             if (now > 23 || now <= 5) {
                 text = '你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？';
@@ -178,8 +178,12 @@ function talk(){
         }
     });
 }
-
-
+$("#msg").bind('keypress',function(event){
+    if(event.keyCode == 13) {
+        talk();
+        $('#msg').val("");
+    }
+});
 function showMessage(text, timeout){
     if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
     //console.log('showMessage', text);
@@ -197,7 +201,17 @@ function hideMessage(timeout){
 
 function initLive2d (){
     $('.hide-button').fadeOut(0).on('click', () => {
-        $('#landlord').css('display', 'none')
+        if($('.hide-button').html() == '关灯'){
+            document.body.classList.add('night');
+            document.cookie = "night=1;path=/"
+            showMessage('夜间模式开启', 1000);
+            $('.hide-button').html('开灯');
+        }else{
+            document.body.classList.remove('night');
+            document.cookie = "night=0;path=/"
+            showMessage('夜间模式关闭', 1000);
+            $('.hide-button').html('关灯');
+        }
     })
     $('#landlord').hover(() => {
         $('.hide-button').fadeIn(600)
