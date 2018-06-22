@@ -188,6 +188,7 @@ function showMessage(text, timeout){
     if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
     //console.log('showMessage', text);
     $('.message').stop();
+    $("#voice").attr("src","http://tsn.baidu.com/text2audio?tex="+text+"&lan=zh&cuid=kdc&ctp=1&tok=24.2041df1f7b3b2616683e304f3ef6b1b8.2592000.1532226630.282335-11429318");
     $('.message').html(text).fadeTo(200, 1);
     if (timeout === null) timeout = 5000;
     hideMessage(timeout);
