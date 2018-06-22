@@ -17,6 +17,7 @@ function renderTip(template, context) {
 }
 //鼠标在某些元素上方时
 jQuery(document).ready(function ($) {
+
     $('h2 a').click(function () {//标题被点击时
         showMessage('正在用吃奶的劲加载《<span style="color:#0099cc;">' + $(this).text() + '</span>》请稍候');
     });
@@ -158,7 +159,7 @@ initTips();
     showMessage(text, 12000);
 })();
 
-window.setInterval(showHitokoto,30000);
+var timeout=window.setInterval(showHitokoto,30000);
 
 function showHitokoto(){
     $.getJSON('https://sslapi.hitokoto.cn/',function(result){
@@ -178,8 +179,24 @@ function talk(){
         }
     });
 }
+function showvideo(){
+    $.ajax({
+        cache: true,
+        url: `live2d/video.json`,
+        dataType: "json",
+        success: function (result){
+            var i=Math.ceil(Math.random()*result.urls.length);
+            $("#videomodel").attr("src",url+result.urls[i]);
+        }
+    })
+
+}
 $("#msg").bind('keypress',function(event){
     if(event.keyCode == 13) {
+        var msg=$('#msg').val();
+        if(msg.indexOf("黄片") != -1||msg.indexOf("色情") != -1||msg.indexOf("换一个") != -1){
+            showvideo();
+        }
         talk();
         $('#msg').val("");
     }
@@ -188,7 +205,8 @@ function showMessage(text, timeout){
     if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
     //console.log('showMessage', text);
     $('.message').stop();
-    $("#voice").attr("src","http://tsn.baidu.com/text2audio?tex="+text+"&lan=zh&cuid=kdc&ctp=1&tok=24.2041df1f7b3b2616683e304f3ef6b1b8.2592000.1532226630.282335-11429318");
+    $("#voice").attr("src","http://tsn.baidu.com/text2audio?tex="+text+
+        "&pit=7&per=4&lan=zh&cuid=kdc&ctp=1&tok=24.2041df1f7b3b2616683e304f3ef6b1b8.2592000.1532226630.282335-11429318");
     $('.message').html(text).fadeTo(200, 1);
     if (timeout === null) timeout = 5000;
     hideMessage(timeout);
@@ -199,7 +217,10 @@ function hideMessage(timeout){
     if (timeout === null) timeout = 5000;
     $('.message').delay(timeout).fadeTo(200, 0);
 }
-
+function clearmsg(){
+    window.clearInterval(timeout);
+    $("#clearmsg").remove();
+}
 function initLive2d (){
     $('.hide-button').fadeOut(0).on('click', () => {
         if($('.hide-button').html() == '关灯'){

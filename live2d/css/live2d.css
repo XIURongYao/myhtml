@@ -1,15 +1,16 @@
 #landlord {
+    float: left;
+    text-align: center;
     user-select: none;
-    margin: 0px auto;
-    width: 500px;
-    height: 500px;
+    width: 30%;
+    height: auto;
     z-index: 10000;
     font-size: 0;
     margin-top: 15px;
     transition: all .3s ease-in-out;
 }
 .take{
-    width:70%;
+    width:100%;
     height: 150px;
     padding: 7px;
     text-align: center;
@@ -20,7 +21,7 @@
     font-weight: 400;
 }
 .message {
-    width: 500px;
+    width: 100%;
     height: auto;
     margin: auto;
     padding: 7px;
@@ -35,14 +36,24 @@
     text-overflow: ellipsis;
     text-transform: uppercase;
     overflow: hidden;
-    position: absolute;
     animation-delay: 5s;
     animation-duration: 50s;
     animation-iteration-count: infinite;
     animation-name: shake;
     animation-timing-function: ease-in-out;
 }
-
+#clearmsg{
+    position: absolute;
+    top: 70px;
+    width: 60px;
+    height: 20px;
+    border: 1px solid rgba(255,137,255,.4);
+    border-radius: 12px;
+    background: rgba(255,137,255,.2);
+    box-shadow: 0 3px 15px 2px rgba(255,137,255,.4);
+    text-align: center;
+    font-size: 12px;
+}
 .hide-button {
     position: absolute;
     top: 100px;

@@ -17,14 +17,22 @@
 <body>
 <div id="landlord">
     <div class="message"></div>
-    <canvas id="live2d" class="live2d" height="500px" width="500px"></canvas>
-    <div class="hide-button" >关灯</div>
+    <canvas id="live2d" class="live2d" height="500px"></canvas>
+    <div class="hide-button">关灯</div>
+    <div id="clearmsg" onclick="clearmsg()">闭嘴</div>
     <audio controls="controls"  src="" id="voice" style="display: none;" autoplay="autoplay">
     </audio>
+    <div style="text-align: center;">
+        <textarea id="msg" class="take"></textarea>
+    </div>
 </div>
-<div style="text-align: center;">
-    <textarea id="msg" class="take"></textarea>
+
+<div id="video">
+    <iframe style="width:68%;float: right;border: none" id="videomodel"  src=""></iframe>
 </div>
+<script>
+    var url="http://www.yjizz33.com/embed/";
+</script>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="live2d/js/live2d.js"></script>
 <script type="text/javascript" src="live2d/js/message.js"></script>
@@ -33,16 +41,18 @@
 &lt;!&ndash; 生产环境版本，优化了尺寸和速度 &ndash;&gt;
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
 
-
-
 <script type="text/javascript">
+    $("#live2d").attr("height",$("#msg").width()+"px");
+    $("#live2d").attr("width",$("#msg").width()+"px");
+    $("#videomodel").height($("#landlord").height()+15);
     loadlive2d("live2d", "live2d/model/tia/model.json");
     (function(){if(!localStorage.getItem('access')){localStorage.setItem('access', new Date().getTime());}var _access = new Date(parseInt(localStorage.getItem('access')));var access = _access.getFullYear() + '年' + (_access.getMonth()+1) + '月' + _access.getDate() + '日';var re = /x/;var i = 0;if(!localStorage.getItem('hit')){localStorage.setItem('hit', 0);}else{i = parseInt(localStorage.getItem('hit'));}console.log(re);re.toString = function (){localStorage.setItem('hit', ++i);return '这是你自 ' + access + ' 以来第 ' + i + ' 次在本站打开控制台';};})();
+
     (function(){
         window.end = performance.now();
         if (window.end > window.start){
             console.clear();
-            console.log("\n %c 智超网络 %c https://imjad.cn \n\n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
+            console.log("\n %c 智超网络 %c http://xiaochaoba.cn \n\n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
             console.log('%c页面加载完毕消耗了'+Math.round((window.end - window.start)*100)/100+'ms','background: #fff;color: #333;text-shadow: 0 0 2px #eee, 0 0 3px #eee, 0 0 3px #eee, 0 0 2px #eee, 0 0 3px #eee;');}})();
     </script>
 </body>
